@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+header{padding: 0 50px 0 50px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    background-color: blanchedalmond;
+}
+
+nav ul{
+    display: flex;
+}
+
+nav ul li{
+    list-style: none;
+    margin-left: 10px;
+}
+
+nav ul li a{
+    display: inline-block;
+    color: #101010;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: aliceblue;
+}
+#checkbtn{
+    display: block;
+}
+#check{
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+
+    nav{
+        display: none;
+    }
+
+
+    #checkbtn{
+        display: block;
+    }
+    #check{
+        display: block;
+    }
+    
+    #check:checked ~ nav{
+        display: block;
+    }
+  }
