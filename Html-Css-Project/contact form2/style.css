@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body{ font-family: "Open Sans", sans-serif;}
+
+.main{
+    width: 100%;
+    height: 100vh;
+    background-color: #e4b5cb;
+    background-image: linear-gradient(315deg, #e4b5cb 0%, #722ae6 74%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.box{
+    width: 80%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    padding: 80px 80px;
+    display: flex;
+    overflow: hidden;
+    
+}
+
+.box .firstcol{
+    width: 55%;
+    height: auto;
+    padding-right: 40px;
+}
+
+.box .firstcol h5{
+    color:#3d1f91;
+    font-weight:700;
+}
+
+.box .firstcol h2{
+    color:#212c35;
+    font-size: 36px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.box .firstcol p{
+    color:#9b9b9b;
+}
+
+
+
+.cover-one{
+    width: 100%;
+    display: flex;
+   
+}
+
+.cover-one .one {
+    /* width: 100%; */
+   margin-top: 30px;
+  
+}
+.cover-one .one-content{
+   margin-top: 30px;
+}
+
+.cover-one .one-content p{
+   margin-top: 5px;
+}
+
+.cover-one .one i{
+    background-color: #3d1f91;
+    padding: 20px 20px;
+    color: #fff;
+    border-radius: 5px;
+    margin-right: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.5s linear;
+}
+
+.cover-one .one i:hover{
+    animation: shake 1s ease-in-out .1s infinite alternate;
+}
+
+
+@keyframes shake{
+    form{
+        transform:rotate(150deg);
+    }
+    to{
+        transform:rotate(-20deg);
+        transform-origin:center center;
+    }
+}
+
+
+
+.cover-one .one i:hover{
+    background-color: #6033da;
+}
+
+
+
+.box .secndcol{
+    width: 45%;
+    height: auto;
+}
+
+form{
+    width: 100%;
+    height: auto;
+    padding: 40px 40px;
+    background-color: #3d1f91;
+    border-radius: 10px;
+}
+
+form input{
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    border-radius:3px;
+    outline: none;
+    border: none;
+    padding: 10px;
+}
+
+form textarea{
+    width: 100%;
+    height: 100px;
+    resize: none;
+    border: none;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-family: "Open Sans", sans-serif;
+}
+
+
+#btn-design{
+    width: 100%;
+    height: 48px;
+    border: none;
+    background-color: #dc3b48;
+  
+    
+    color: #fff;
+    margin-top: 15px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.5s linear;
+}
+
+#btn-design:hover{
+    background-color: #f9737e;
+   
+    
+}
+
+
+
+
+@media screen and (max-width:992px){
+
+
+    .main{
+        padding: 40px;
+        height: auto;
+    }
+
+    .box{
+        width: 100%;
+        display: flex;
+        overflow: hidden;
+        flex-direction: column;
+        padding: 40px 20px;
+        
+    }
+
+
+    .box .firstcol{
+        width: 100%;
+        height: auto;
+        padding-bottom:40px;
+    }
+
+    .box .secndcol{
+        width: 100%;
+        height: auto;
+
+    }
+
+}

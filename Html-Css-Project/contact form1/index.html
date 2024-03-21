@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+
+    <div class="main">
+
+
+        <div class="cover">
+
+            <div class="heading">
+                <h1>Contact Form</h1>
+                <!-- <p>whether you have a question about anything, our team is ready to anwser all your question</p> -->
+            </div>
+
+            <form action="get">
+
+                <div class="form-width"><label for="name">Name*<input type="text" pattern="^[a-zA-Z ]*$" id="name"
+                            placeholder="Enter Your Name" required /></label></div>
+                <div class="form-width"> <label for="email">Email<input type="email" id="email"
+                            placeholder="Enter Your Email" required /></label></div>
+                <div class="form-width"><label for="phone">Phone Number<input type="tel"  pattern="^[0-9]{10}" id="phone"
+                            placeholder="Enter Your phone" required /></label></div>
+                <div class="form-width"><label for="subject">Subject<input type="subject" id="subject"
+                            placeholder="Enter Your Subject" required /></label></div>
+                <div class="full-width-form"><label for="message">message<textarea name="message" id="message"
+                            placeholder="Type Here Your Text" required></textarea></label></div>
+                <input id="btn-design" type="submit" value="submit">
+            </form>
+
+
+        </div>
+    </div>
+
+</body>
+
+</html>
