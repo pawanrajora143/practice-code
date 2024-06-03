@@ -3,42 +3,25 @@ import Navbar from "./components/Navbar";
 
 import { FaSearch } from "react-icons/fa";
 import { FaPlusCircle } from "react-icons/fa";
-import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, onSnapshot } from "firebase/firestore";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { FaUserCircle } from "react-icons/fa";
 import { db } from "./config/firbase";
 import { RiEditCircleLine } from "react-icons/ri";
 import { IoMdTrash } from "react-icons/io";
 import AddandUpdateContact from "./components/AddandUpdateContact";
 import ContactCard from "./components/contactCard";
+import useDisclose from "./Hooks/useDisclose";
 
 
 const App = () => {
   const [contacts, setContacts] = useState([]);
 
-  const [isOpen , setOpen] = useState(false);
+  const {isOpen , onClose , onOpen} = useDisclose();
 
-  const onOpen = () =>{
-    setOpen(true)
-  }
-
-  const onClose = () =>{
-    setOpen(false)
-    console.log("poora" ,onClose)
-  }
-
-
-  const deleteContact = async (id) =>{
-    // console.log("poora" , id)
-
-    try {
-      await deleteDoc(doc(db, "contacts" , id))
-      // console.log("poora" , db)
-      
-    } catch (error) {
-      console.log(error)
-      
-    }
-  }
 
 
 
@@ -47,16 +30,25 @@ const App = () => {
       try {
         const contactsRef = collection(db, "contacts");
         const contactsSnapshot = await getDocs(contactsRef);
-        const contactLists = contactsSnapshot.docs.map((doc) => {
-          return {
-            id: doc.id,
-            ...doc.data(),
-          };
-        });
 
-        // console.log(contactsSnapshot);
-        // console.log(contactLists);
-        setContacts(contactLists);
+        onSnapshot(contactsRef , (snapshot)=>{
+
+          const contactLists = snapshot.docs.map((doc) => {
+            return {
+              id: doc.id,
+              ...doc.data(),
+            };
+          });
+  
+          // console.log(contactsSnapshot);
+          // console.log(contactLists);
+          setContacts(contactLists);
+          return  contactLists;
+
+        })
+
+
+        
       } catch (error) {}
     };
 
@@ -65,6 +57,34 @@ const App = () => {
 
 
 
+  const filterContacts = (e) =>{
+
+    const value = e.target.value;
+    const contactsRef = collection(db, "contacts");
+       
+
+        onSnapshot(contactsRef , (snapshot)=>{
+
+          const contactLists = snapshot.docs.map((doc) => {
+            return {
+              id: doc.id,
+              ...doc.data(),
+            };
+          });
+  
+          // console.log(contactsSnapshot);
+          // console.log(contactLists);
+
+          const filteredContacts = contactLists.filter((contact)  =>
+         contact.name.toLowerCase().includes(value.toLowerCase())
+        );
+          setContacts(filteredContacts);
+          return  filteredContacts;
+
+        });
+
+
+  };
 
   return (
     <>
@@ -74,7 +94,7 @@ const App = () => {
       <div className="flex gap-2 my-4">
         <div className="flex relative items-center flex-grow  ">
           <FaSearch className="absolute text-white text-2xl ml-3 " />
-          <input
+          <input onChange={filterContacts}
             type="text"
             className=" bg-transparent border border-white flex-grow rounded-md h-10 pl-12 text-white"
           />
@@ -91,7 +111,7 @@ const App = () => {
         ))}
          </div>
     <AddandUpdateContact isOpen={isOpen} onClose={onClose}/>
-        
+        <ToastContainer position="bottom-center"/>
       </div>
     
    

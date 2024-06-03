@@ -16,7 +16,7 @@ const useDisclose = () => {
     }
 
 
-  return {onclose, onOpen , isOpen}
+  return {onClose, onOpen , isOpen}
 }
 
 export default useDisclose
