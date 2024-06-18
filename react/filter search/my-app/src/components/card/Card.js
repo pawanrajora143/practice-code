@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 import Data from "../data/Data";
+import { BrowserRouter , Routes , Route , NavLink } from "react-router-dom";
 
 const Card = () => {
   const [searchItem, setSearchItem] = useState("");
+  const [filteredItems, setFilteredItems] = useState(Data);
 
-  // console.log(searchItem)
+  const filterItem = (catItem) => {
+    if (catItem === "All") {
+      setFilteredItems(Data);
+    } else {
+      const updateItem = Data.filter((currEle) => currEle.category === catItem);
+      setFilteredItems(updateItem);
+    }
+  };
 
   return (
     <div>
@@ -12,64 +21,50 @@ const Card = () => {
         <h1>Search Your Item Here</h1>
         <input
           type="text"
-          name=""
-          id=""
           placeholder="Enter here Search..."
           onChange={(event) => setSearchItem(event.target.value)}
         />
       </div>
 
+
+
+      <div className="btns">
+
+
+      <BrowserRouter>
+
+     
+
+        <NavLink to="All" className={(e)=>e.isActive ? "active" : ""}><button onClick={() => filterItem("All")}>All</button></NavLink>
+        <button onClick={() => filterItem("nature")}>Nature</button>
+
+        <button onClick={() => filterItem("phone")}>Phone</button>
+        <button onClick={() => filterItem("animal")}>Animal</button>
+
+
+
+        </BrowserRouter>
+      </div>
+
       <div className="cards">
-        
-
-        {/* {Data.map((item, index) => {
-          const { image, title, category } = item;
-
-          return (
-            <div className="card">
-              <img src={image} alt="" />
-              <h2>{title}</h2>
-            </div>
-          );
-        })
-        
-        
-        
-        } */}
-
-
-
-
-        {
-        
-        Data.filter((val) => {
-          if (searchItem === "") {
-            return val;
-          } else if(val.title.toLowerCase().includes(searchItem.toLowerCase())){
-
-            return val;
-          }
-          
-
-        })
-
-        .map((item, index) => {
-            const { image, title, category } = item;
-  
+        {filteredItems
+          .filter((val) => {
+            if (searchItem === "") {
+              return val;
+            } else if (val.title.toLowerCase().includes(searchItem.toLowerCase())) {
+              return val;
+            }
+            return null;
+          })
+          .map((item, index) => {
+            const { image, title } = item;
             return (
-              <div className="card">
-                <img src={image} alt="" />
+              <div className="card" key={index}>
+                <img src={image} alt={title} />
                 <h2>{title}</h2>
               </div>
             );
-          })
-        
-        
-        
-        }
-
-
-
+          })}
       </div>
     </div>
   );
